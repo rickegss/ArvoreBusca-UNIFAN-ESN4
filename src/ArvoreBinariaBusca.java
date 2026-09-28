@@ -1,10 +1,10 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Queue;
+
 public class ArvoreBinariaBusca {
 
     private No raiz;
-
-    public ArvoreBinariaBusca(No raiz) {
-        this.raiz = raiz;
-    }
 
     public ArvoreBinariaBusca() {
     }
@@ -24,11 +24,39 @@ public class ArvoreBinariaBusca {
     private boolean buscar(No atual, int valor) {
     }
 
-    public No getRaiz() {
-        return raiz;
+    public void preOrdem() {
     }
 
-    public void setRaiz(No raiz) {
-        this.raiz = raiz;
+    private void preOrdem(No atual) {
+    }
+
+    public void emOrdem() {
+    }
+
+    private void emOrdem(No atual) {
+    }
+
+    public void posOrdem() {
+    }
+
+    private void posOrdem(No atual) {
+    }
+
+    public void bfs() {
+    }
+
+    public void dfs() {
+    }
+
+    public int altura() {
+    }
+
+    private int altura(No atual) {
+    }
+
+    public void mostrarEstrutura() {
+    }
+
+    private void mostrarEstrutura(No atual, int profundidade) {
     }
 }
