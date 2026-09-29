@@ -19,17 +19,30 @@ public class Main {
 
             executarOpcao(opcao, arvore);
 
-        } while (opcao != 0);
+        } while (opcao != 10);
 
         teclado.close();
     }
 
     private static void carregarValoresIniciais(ArvoreBinariaBusca arvore) {
 
-        int[] valores = {50, 30, 70, 20, 40, 60, 80};
+        int quantidade = lerInteiro("Quantos valores deseja inserir na árvore? ");
 
-        for (int valor : valores) {
-            arvore.inserir(valor);
+        while (quantidade < 1) {
+            System.out.println("A quantidade deve ser maior que zero.");
+            quantidade = lerInteiro("Quantos valores deseja inserir na árvore? ");
+        }
+
+        int inseridos = 0;
+
+        while (inseridos < quantidade) {
+            int valor = lerInteiro("Digite o valor " + (inseridos + 1) + ": ");
+
+            if (arvore.inserir(valor)) {
+                inseridos++;
+            } else {
+                System.out.println("Valor repetido. Digite outro valor.");
+            }
         }
     }
 
@@ -39,16 +52,16 @@ public class Main {
         System.out.println("======================================");
         System.out.println("       ÁRVORE BINÁRIA DE BUSCA");
         System.out.println("======================================");
-        System.out.println("1 - Inserir valor");
-        System.out.println("2 - Buscar valor");
-        System.out.println("3 - Mostrar Pré-ordem");
-        System.out.println("4 - Mostrar Em ordem");
-        System.out.println("5 - Mostrar Pós-ordem");
-        System.out.println("6 - Mostrar BFS - Busca em Largura");
-        System.out.println("7 - Mostrar DFS - Busca em Profundidade");
-        System.out.println("8 - Mostrar altura da árvore");
-        System.out.println("9 - Mostrar estrutura da árvore");
-        System.out.println("0 - Sair");
+        System.out.println("1  - Inserir valor");
+        System.out.println("2  - Buscar valor");
+        System.out.println("3  - Mostrar Pré-ordem");
+        System.out.println("4  - Mostrar Em ordem");
+        System.out.println("5  - Mostrar Pós-ordem");
+        System.out.println("6  - Mostrar BFS - Busca em Largura");
+        System.out.println("7  - Mostrar DFS - Busca em Profundidade");
+        System.out.println("8  - Mostrar altura da árvore");
+        System.out.println("9  - Mostrar estrutura da árvore");
+        System.out.println("10 - Sair");
         System.out.println("======================================");
     }
 
@@ -85,19 +98,19 @@ public class Main {
 
             case 3:
                 System.out.println();
-                System.out.println("Pré-ordem:");
+                System.out.println("Pré-ordem (Raiz, Esquerda, Direita):");
                 arvore.preOrdem();
                 break;
 
             case 4:
                 System.out.println();
-                System.out.println("Em ordem:");
+                System.out.println("Em ordem (Esquerda, Raiz, Direita):");
                 arvore.emOrdem();
                 break;
 
             case 5:
                 System.out.println();
-                System.out.println("Pós-ordem:");
+                System.out.println("Pós-ordem (Esquerda, Direita, Raiz):");
                 arvore.posOrdem();
                 break;
 
@@ -113,16 +126,18 @@ public class Main {
 
             case 8:
                 System.out.println();
-                System.out.println("Altura da árvore: " + arvore.altura());
+                System.out.println("Altura da árvore: " + arvore.altura() + " (a raiz está no nível 0)");
                 break;
 
             case 9:
                 System.out.println();
-                System.out.println("Estrutura da árvore:");
+                System.out.println("Estrutura da árvore (raiz no topo):");
+                System.out.println("Legenda: E = filho esquerdo | D = filho direito | + = ponto de ligação com o pai");
+                System.out.println();
                 arvore.mostrarEstrutura();
                 break;
 
-            case 0:
+            case 10:
                 System.out.println();
                 System.out.println("Programa encerrado.");
                 break;
@@ -137,9 +152,11 @@ public class Main {
 
         int valor = lerInteiro("Digite o valor que deseja inserir: ");
 
-        arvore.inserir(valor);
-
-        System.out.println("Valor inserido com sucesso!");
+        if (arvore.inserir(valor)) {
+            System.out.println("Valor inserido com sucesso!");
+        } else {
+            System.out.println("O valor " + valor + " já existe na árvore e não foi inserido.");
+        }
     }
 
     private static void buscarValor(ArvoreBinariaBusca arvore) {
@@ -147,13 +164,9 @@ public class Main {
         int valor = lerInteiro("Digite o valor que deseja buscar: ");
 
         if (arvore.buscar(valor)) {
-
-            System.out.println("Valor encontrado na árvore!");
-
+            System.out.println("Valor " + valor + " encontrado na árvore!");
         } else {
-
-            System.out.println("Valor não encontrado na árvore.");
+            System.out.println("Valor " + valor + " não encontrado na árvore.");
         }
     }
 }
-
