@@ -29,7 +29,7 @@ public class No {
         return direita;
     }
 
-    public void setDireita(No direita) {
+    public void setDireita(No direita, int valor) {
         this.direita = direita;
     }
 }
